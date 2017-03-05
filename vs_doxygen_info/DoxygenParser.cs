@@ -49,6 +49,24 @@ namespace vs_doxygen_info
             IList<string> raw;
             m_dictionary.TryGetValue("raw", out raw);
             Match m = command_regex.Match(raw[0]);
+            while(m.Success)
+            {
+                IList<string> contents;
+                string command = m.Groups[1].Value;
+                m_dictionary.TryGetValue(command, out contents);
+                if (contents == null)
+                {
+                    contents = new List<string>();
+                }
+                else
+                {
+                    m_dictionary.Remove(command);
+                }
+                contents.Add(m.Groups[2].Value);
+                m_dictionary.Add(command, contents);
+
+                m = m.NextMatch();
+            }
             return m_dictionary;
         }
     }
