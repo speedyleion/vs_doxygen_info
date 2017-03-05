@@ -82,7 +82,7 @@ internal class DoxygenInfo : IQuickInfoSource
 
     private string format(string original_content)
     {
-        return original_content + "\ntacos!!!!!!!!!";
+        return original_content + "\n\nacos!!!!!!!!!";
     }
 
     private bool m_isDisposed;
