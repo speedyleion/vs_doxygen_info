@@ -31,7 +31,7 @@ namespace vs_doxygen_info
             char[] delimiters = { '\n' };
             string [] signature = raw_string.Split(delimiters);
             local_list = new List<string>();
-            local_list.Add(signature[0]);
+            local_list.Add(signature[0].Trim());
             m_dictionary.Add("signature", local_list);
         }
 
@@ -69,7 +69,7 @@ namespace vs_doxygen_info
                 {
                     m_dictionary.Remove(command);
                 }
-                contents.Add(m.Groups[2].Value);
+                contents.Add(m.Groups[2].Value.Trim());
                 m_dictionary.Add(command, contents);
 
                 m = m.NextMatch();
