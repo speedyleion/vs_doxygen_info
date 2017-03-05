@@ -26,6 +26,13 @@ namespace vs_doxygen_info
 
             m_dictionary = new Dictionary<string, IList<string>>();
             m_dictionary.Add("raw", local_list);
+
+            // The signature is always the first line.
+            char[] delimiters = { '\n' };
+            string [] signature = raw_string.Split(delimiters);
+            local_list = new List<string>();
+            local_list.Add(signature[0]);
+            m_dictionary.Add("signature", local_list);
         }
 
         /// <summary>

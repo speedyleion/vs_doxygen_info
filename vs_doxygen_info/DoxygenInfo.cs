@@ -17,6 +17,7 @@ namespace vs_doxygen_info
         private TestQuickInfoSourceProvider m_provider;
         private ITextBuffer m_subjectBuffer;
         private Dictionary<string, string> m_dictionary;
+        private readonly string[] m_info_keys = { "signature", "brief" };
         public DoxygenInfo(TestQuickInfoSourceProvider provider, ITextBuffer subjectBuffer)
         {
             m_provider = provider;
@@ -91,7 +92,10 @@ namespace vs_doxygen_info
             dict.TryGetValue("brief", out commands);
             if (commands != null)
             {
-                return commands[0];
+                // This should never fail..?
+                IList<string> info;
+                dict.TryGetValue("signature", out info);
+                return info[0] + "\n" + commands[0];
             }
 
             return original_content;
