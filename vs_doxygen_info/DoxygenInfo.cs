@@ -14,11 +14,11 @@ namespace vs_doxygen_info
     internal class DoxygenInfo : IQuickInfoSource
 
     {
-        private TestQuickInfoSourceProvider m_provider;
+        private DoxygenQuickInfoSourceProvider m_provider;
         private ITextBuffer m_subjectBuffer;
         private Dictionary<string, string> m_dictionary;
         private readonly string[] m_info_keys = { "signature", "brief" };
-        public DoxygenInfo(TestQuickInfoSourceProvider provider, ITextBuffer subjectBuffer)
+        public DoxygenInfo(DoxygenQuickInfoSourceProvider provider, ITextBuffer subjectBuffer)
         {
             m_provider = provider;
             m_subjectBuffer = subjectBuffer;
@@ -117,7 +117,7 @@ namespace vs_doxygen_info
     [Name("ToolTip QuickInfo Source")]
     [Order(After = "Default Quick Info Presenter")]
     [ContentType("text")]
-    internal class TestQuickInfoSourceProvider : IQuickInfoSourceProvider
+    internal class DoxygenQuickInfoSourceProvider : IQuickInfoSourceProvider
     {
         [Import]
         internal ITextStructureNavigatorSelectorService NavigatorService { get; set; }
